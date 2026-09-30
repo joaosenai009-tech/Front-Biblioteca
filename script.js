@@ -3,6 +3,8 @@ const previaCapa = document.querySelector("#previa-capa");
 const imagemCapa = document.querySelector("#imagem-capa");
 const nomeCapa = document.querySelector("#nome-capa");
 const botaoRemoverCapa = document.querySelector("#remover-capa");
+const formLoginUnico = document.querySelector("#form-login-unico");
+const resultadoLogin = document.querySelector("#resultado-login");
 
 if (campoCapa && previaCapa && imagemCapa && nomeCapa && botaoRemoverCapa) {
   let urlCapa = "";
@@ -28,5 +30,23 @@ if (campoCapa && previaCapa && imagemCapa && nomeCapa && botaoRemoverCapa) {
     if (urlCapa) URL.revokeObjectURL(urlCapa);
     urlCapa = "";
     campoCapa.focus();
+  });
+}
+
+if (formLoginUnico && resultadoLogin) {
+  formLoginUnico.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const email = document.querySelector("#email-login");
+    const senha = document.querySelector("#senha-login");
+
+    if (!email || !senha) {
+      resultadoLogin.textContent = "Preencha os campos para continuar.";
+      return;
+    }
+
+    resultadoLogin.textContent = `Login do aluno realizado com sucesso para ${email.value}.`;
+    resultadoLogin.style.backgroundColor = "#e8f5e9";
+    resultadoLogin.style.color = "#1b5e20";
   });
 }
